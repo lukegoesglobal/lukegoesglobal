@@ -253,6 +253,7 @@ main, section { position: relative; z-index: 2; }
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
   padding: 18px 0;
+  padding-top: max(18px, env(safe-area-inset-top));
   animation: navSlide 0.5s ease-out;
 }
 @keyframes navSlide {
@@ -601,40 +602,39 @@ main, section { position: relative; z-index: 2; }
 }
 .milestone-visual {
   aspect-ratio: 9/14;
-  background: linear-gradient(135deg, #FE2C55 0%, #25F4EE 50%, #833AB4 100%);
   border-radius: 4px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.4);
+  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.5);
+  background: var(--ink);
+}
+.milestone-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.milestone-visual:hover img { transform: scale(1.03); }
+.milestone-play-overlay {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 55%);
+  pointer-events: none;
+  transition: background 0.3s;
+}
+.milestone-play-overlay svg {
+  width: 72px;
+  height: 72px;
   color: white;
-  text-align: center;
-  padding: 30px;
+  filter: drop-shadow(0 4px 18px rgba(0,0,0,0.6));
+  transition: transform 0.3s;
 }
-.milestone-visual .label {
-  font-family: 'Caveat', cursive;
-  font-size: 22px;
-  margin-bottom: 10px;
-  opacity: 0.92;
-}
-.milestone-visual .big {
-  font-family: 'Fraunces', serif;
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-.milestone-visual .sub {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-size: 17px;
-  margin-top: 14px;
-  opacity: 0.9;
-}
+.milestone-visual:hover .milestone-play-overlay { background: rgba(0,0,0,0.12); }
+.milestone-visual:hover .milestone-play-overlay svg { transform: scale(1.08); }
 
 /* ===== WORK PILLARS ===== */
 .work {
@@ -852,28 +852,33 @@ main, section { position: relative; z-index: 2; }
   display: block;
 }
 .case-visual-wrap.inbound { background: linear-gradient(135deg, #25F4EE 0%, #1F1A14 60%, #FE2C55 100%); }
-.case-visual-placeholder {
+.case-visual-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.case-visual-wrap:hover img { transform: scale(1.03); }
+.case-play-overlay {
   position: absolute;
   inset: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
+  transition: background 0.3s;
+  pointer-events: none;
+}
+.case-play-overlay svg {
+  width: 64px;
+  height: 64px;
   color: white;
-  text-align: center;
-  padding: 30px;
-  gap: 14px;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.6));
+  transition: transform 0.3s;
 }
-.case-visual-placeholder span {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-size: 16px;
-}
-.case-visual-placeholder svg {
-  width: 56px;
-  height: 56px;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-}
+.case-visual-wrap:hover .case-play-overlay { background: rgba(0,0,0,0.15); }
+.case-visual-wrap:hover .case-play-overlay svg { transform: scale(1.08); }
 
 .case-content { padding-top: 10px; }
 .case-tag {
@@ -1387,11 +1392,13 @@ footer {
           <a href="https://www.instagram.com/reel/DVtE4Wrjekp/" target="_blank">Watch on Instagram ↗</a>
         </div>
       </div>
-      <div class="milestone-visual">
-        <div class="label">The Survivor Café</div>
-        <div class="big">3.16M</div>
-        <div class="sub">Miami, FL</div>
-      </div>
+      <a href="https://www.tiktok.com/t/ZP8pjQFt9/" target="_blank" class="milestone-visual">
+        <span class="viral-badge">★ Viral</span>
+        <img src="thumb-survivor.jpg" alt="Survivor Cafe Miami video that hit 3.16M views">
+        <div class="milestone-play-overlay">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1418,10 +1425,10 @@ footer {
       </div>
       <div class="pillar-grid">
         <a href="https://www.tiktok.com/t/ZP8pjket1/" target="_blank" class="video-card">
-          <div class="video-thumb tt">
-            <div class="video-thumb-placeholder">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="width:48px;height:48px;color:white;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5))"><path d="M8 5v14l11-7z"/></svg>
-              <span>Oita · Hot Springs</span>
+          <div class="video-thumb">
+            <img src="thumb-oita.jpg" alt="Inside Japan's town built on a volcano">
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </div>
           <div class="video-meta">
@@ -1431,10 +1438,10 @@ footer {
           </div>
         </a>
         <a href="https://www.tiktok.com/t/ZP8pjAeLS/" target="_blank" class="video-card">
-          <div class="video-thumb tt">
-            <div class="video-thumb-placeholder">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="width:48px;height:48px;color:white;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5))"><path d="M8 5v14l11-7z"/></svg>
-              <span>Destin · Florida</span>
+          <div class="video-thumb">
+            <img src="thumb-destin.jpg" alt="Cancelled class equals beach day in Destin Florida">
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </div>
           <div class="video-meta">
@@ -1443,19 +1450,6 @@ footer {
             <div class="video-stats"><span>15.4K views</span><span>1.2K likes</span><span>31 new follows</span></div>
           </div>
         </a>
-        <article class="video-card open-slot">
-          <div class="video-thumb">
-            <div class="video-thumb-placeholder">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="opacity:0.4;width:42px;height:42px"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-              <span>Your campaign here</span>
-            </div>
-          </div>
-          <div class="video-meta">
-            <span class="video-platform">Open Slot</span>
-            <h4 class="video-title">Tourism boards, airlines, gear</h4>
-            <div class="video-stats"><span>let's talk</span></div>
-          </div>
-        </article>
       </div>
     </div>
 
@@ -1472,8 +1466,8 @@ footer {
       </div>
       <div class="pillar-grid pillar-grid-2">
         <a href="https://youtube.com/shorts/Kggbl2HIsp4" target="_blank" class="video-card">
-          <div class="video-thumb yt-thumb">
-            <img src="https://img.youtube.com/vi/Kggbl2HIsp4/maxresdefault.jpg" alt="Henn Na Hotel Japan" onerror="this.src='https://img.youtube.com/vi/Kggbl2HIsp4/hqdefault.jpg'">
+          <div class="video-thumb">
+            <img src="thumb-robot.jpg" alt="Japan Robot Hotel">
             <div class="play-overlay">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
@@ -1485,11 +1479,11 @@ footer {
           </div>
         </a>
         <a href="https://www.tiktok.com/t/ZP8pjQoLg/" target="_blank" class="video-card">
-          <div class="video-thumb tt">
+          <div class="video-thumb">
             <span class="viral-badge">★ Viral</span>
-            <div class="video-thumb-placeholder">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="width:48px;height:48px;color:white;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5))"><path d="M8 5v14l11-7z"/></svg>
-              <span>Embassy Suites · Bloomington</span>
+            <img src="thumb-embassy.jpg" alt="Hidden gem hotel in Minneapolis">
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </div>
           <div class="video-meta">
@@ -1514,10 +1508,10 @@ footer {
       </div>
       <div class="pillar-grid">
         <a href="https://www.tiktok.com/t/ZP8pjhRDo/" target="_blank" class="video-card">
-          <div class="video-thumb tt">
-            <div class="video-thumb-placeholder">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="width:48px;height:48px;color:white;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5))"><path d="M8 5v14l11-7z"/></svg>
-              <span>Pickleball · Vietnam</span>
+          <div class="video-thumb">
+            <img src="thumb-pickle-vietnam.jpg" alt="USA College Athletes play Pickleball in Vietnam">
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </div>
           <div class="video-meta">
@@ -1527,10 +1521,10 @@ footer {
           </div>
         </a>
         <a href="https://www.instagram.com/reel/DLU5nNBP5dU/" target="_blank" class="video-card">
-          <div class="video-thumb ig">
-            <div class="video-thumb-placeholder">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="width:48px;height:48px;color:white;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5))"><path d="M8 5v14l11-7z"/></svg>
-              <span>Pickleball · Tokyo</span>
+          <div class="video-thumb">
+            <img src="thumb-pickle-tokyo.jpg" alt="Pickleball in Tokyo Japan">
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </div>
           <div class="video-meta">
@@ -1540,10 +1534,10 @@ footer {
           </div>
         </a>
         <a href="https://www.tiktok.com/t/ZP8pjkV8u/" target="_blank" class="video-card">
-          <div class="video-thumb tt">
-            <div class="video-thumb-placeholder">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="width:48px;height:48px;color:white;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5))"><path d="M8 5v14l11-7z"/></svg>
-              <span>Pickleball · Tuscaloosa</span>
+          <div class="video-thumb">
+            <img src="thumb-pickle-tuscaloosa.jpg" alt="Pickleball Explosion in Tuscaloosa">
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </div>
           <div class="video-meta">
@@ -1573,9 +1567,9 @@ footer {
     <div class="case">
       <div class="case-grid">
         <a href="https://www.tiktok.com/t/ZP8pjB8rE/" target="_blank" class="case-visual-wrap">
-          <div class="case-visual-placeholder">
+          <img src="thumb-kulikuli.jpg" alt="Top 5 Apps for Japan featuring Kuli Kuli">
+          <div class="case-play-overlay">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            <span>Kuli Kuli · Tokyo</span>
           </div>
         </a>
         <div class="case-content">
@@ -1614,9 +1608,9 @@ footer {
     <div class="case">
       <div class="case-grid">
         <a href="https://www.tiktok.com/t/ZP8pjQoLg/" target="_blank" class="case-visual-wrap inbound">
-          <div class="case-visual-placeholder">
+          <img src="thumb-embassy.jpg" alt="Embassy Suites Bloomington hidden gem hotel">
+          <div class="case-play-overlay">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            <span>Embassy Suites · Bloomington</span>
           </div>
         </a>
         <div class="case-content">
