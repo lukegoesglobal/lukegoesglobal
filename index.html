@@ -1331,24 +1331,24 @@ footer {
 
     <div class="stats-grid">
       <div class="stat">
-        <div class="stat-number" data-target="2.4" data-suffix="M" data-decimals="1">0M</div>
+        <div class="stat-number" data-target="2.1" data-suffix="M" data-decimals="1">2.1M</div>
         <div class="stat-label">Views</div>
-        <span class="stat-sub">last 28 days</span>
+        <span class="stat-sub">monthly average</span>
       </div>
       <div class="stat">
-        <div class="stat-number" data-target="78.7" data-suffix="K" data-decimals="1">0K</div>
+        <div class="stat-number" data-target="65.6" data-suffix="K" data-decimals="1">65.6K</div>
         <div class="stat-label">Likes</div>
-        <span class="stat-sub">last 28 days</span>
+        <span class="stat-sub">monthly average</span>
       </div>
       <div class="stat">
-        <div class="stat-number" data-target="3.57" data-suffix="%" data-decimals="2">0%</div>
+        <div class="stat-number" data-target="3.51" data-suffix="%" data-decimals="2">3.51%</div>
         <div class="stat-label">Engagement</div>
         <span class="stat-sub">2x category avg</span>
       </div>
       <div class="stat">
-        <div class="stat-number" data-target="6.2" data-suffix="K" data-decimals="1">0K</div>
+        <div class="stat-number" data-target="5.2" data-suffix="K" data-decimals="1">5.2K</div>
         <div class="stat-label">Shares</div>
-        <span class="stat-sub">last 28 days</span>
+        <span class="stat-sub">monthly average</span>
       </div>
     </div>
 
@@ -1360,7 +1360,7 @@ footer {
       </div>
       <div class="platform">
         <div class="platform-name">TikTok</div>
-        <a class="platform-handle" href="https://www.tiktok.com/@lukebequette" target="_blank">@lukebequette</a>
+        <a class="platform-handle" href="https://www.tiktok.com/@lukegoesglobal_" target="_blank">@lukegoesglobal_</a>
         <div class="platform-stats">3,042 FOLLOWERS</div>
       </div>
       <div class="platform">
@@ -1765,7 +1765,7 @@ footer {
     <a href="mailto:lukegoesglobal1@gmail.com" class="contact-email">lukegoesglobal1@gmail.com</a>
     <div class="contact-socials">
       <a href="https://www.youtube.com/@Lukegoesglobal" target="_blank">YouTube</a>
-      <a href="https://www.tiktok.com/@lukebequette" target="_blank">TikTok</a>
+      <a href="https://www.tiktok.com/@lukegoesglobal_" target="_blank">TikTok</a>
       <a href="https://www.instagram.com/lukegoesglobal/" target="_blank">Instagram</a>
     </div>
   </div>
@@ -1801,52 +1801,97 @@ footer {
 
   // ===== STATS COUNT-UP ANIMATION =====
   (function () {
-    const numbers = document.querySelectorAll('.stat-number[data-target]');
+    var numbers = document.querySelectorAll('.stat-number[data-target]');
     if (!numbers.length) return;
 
+    // Guarantees the element shows its true, correct value. Called on
+    // success, on error, and as a final safety timeout.
+    function setFinal(el) {
+      var target = parseFloat(el.dataset.target);
+      var suffix = el.dataset.suffix || '';
+      var decimals = parseInt(el.dataset.decimals, 10);
+      if (isNaN(decimals)) decimals = 0;
+      if (isNaN(target)) return; // leave the HTML default untouched
+      el.textContent = target.toFixed(decimals) + suffix;
+    }
+
     function animateValue(el) {
-      const target = parseFloat(el.dataset.target);
-      const suffix = el.dataset.suffix || '';
-      const decimals = parseInt(el.dataset.decimals, 10) || 0;
-      const totalDuration = 1700;
-      const cycleDuration = 650;
-      const start = performance.now();
+      var target = parseFloat(el.dataset.target);
+      var suffix = el.dataset.suffix || '';
+      var decimals = parseInt(el.dataset.decimals, 10);
+      if (isNaN(decimals)) decimals = 0;
+
+      // If the value is unreadable, or rAF is unavailable, just show the truth.
+      if (isNaN(target) || typeof requestAnimationFrame !== 'function') {
+        setFinal(el);
+        return;
+      }
+
+      var totalDuration = 1700;
+      var cycleDuration = 650;
+      var start = performance.now();
+      var finished = false;
+
+      // Absolute safety net: no matter what happens in the animation loop,
+      // force the true value on screen shortly after it should have ended.
+      var safety = setTimeout(function () {
+        if (!finished) { finished = true; setFinal(el); }
+      }, totalDuration + 400);
 
       function frame(now) {
-        const elapsed = now - start;
+        if (finished) return;
+        try {
+          var elapsed = now - start;
 
-        if (elapsed < cycleDuration) {
-          // Phase 1: rapid random cycling for "slot machine" effect
-          const cycleProgress = elapsed / cycleDuration;
-          const randomMultiplier = 0.4 + Math.random() * 1.2;
-          const cycled = (target * randomMultiplier * (0.3 + cycleProgress * 0.7)).toFixed(decimals);
-          el.textContent = cycled + suffix;
-          requestAnimationFrame(frame);
-        } else if (elapsed < totalDuration) {
-          // Phase 2: ease into the final value
-          const progress = (elapsed - cycleDuration) / (totalDuration - cycleDuration);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const current = (target * eased).toFixed(decimals);
-          el.textContent = current + suffix;
-          requestAnimationFrame(frame);
-        } else {
-          el.textContent = target.toFixed(decimals) + suffix;
+          if (elapsed < cycleDuration) {
+            var cycleProgress = elapsed / cycleDuration;
+            var randomMultiplier = 0.4 + Math.random() * 1.2;
+            var cycled = (target * randomMultiplier * (0.3 + cycleProgress * 0.7)).toFixed(decimals);
+            el.textContent = cycled + suffix;
+            requestAnimationFrame(frame);
+          } else if (elapsed < totalDuration) {
+            var progress = (elapsed - cycleDuration) / (totalDuration - cycleDuration);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = (target * eased).toFixed(decimals);
+            el.textContent = current + suffix;
+            requestAnimationFrame(frame);
+          } else {
+            finished = true;
+            clearTimeout(safety);
+            setFinal(el);
+          }
+        } catch (e) {
+          // Any runtime error: stop and show the real number.
+          finished = true;
+          clearTimeout(safety);
+          setFinal(el);
         }
       }
 
       requestAnimationFrame(frame);
     }
 
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting && !entry.target.dataset.animated) {
-          entry.target.dataset.animated = 'true';
-          animateValue(entry.target);
-        }
-      });
-    }, { threshold: 0.4 });
+    // If IntersectionObserver is unsupported, just show all the real numbers.
+    if (typeof IntersectionObserver !== 'function') {
+      numbers.forEach(function (el) { setFinal(el); });
+      return;
+    }
 
-    numbers.forEach(function (el) { observer.observe(el); });
+    try {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !entry.target.dataset.animated) {
+            entry.target.dataset.animated = 'true';
+            animateValue(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      numbers.forEach(function (el) { observer.observe(el); });
+    } catch (e) {
+      // Observer setup failed for any reason: show real numbers immediately.
+      numbers.forEach(function (el) { setFinal(el); });
+    }
   })();
 </script>
 
