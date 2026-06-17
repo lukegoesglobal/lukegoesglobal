@@ -529,7 +529,7 @@ main, section { position: relative; z-index: 2; }
 .band-honduras { background-image: url('band-honduras.jpg'); background-position: center 60%; }
 .band-hand { background-image: url('band-hand.jpg'); }
 
-/* ===== VIRAL MILESTONE (Survivor Café combined) ===== */
+/* ===== VIRAL MILESTONES (Nicaragua + Survivor Café) ===== */
 .milestone {
   background: var(--moss);
   color: var(--cream);
@@ -544,6 +544,12 @@ main, section { position: relative; z-index: 2; }
   background: radial-gradient(circle at 75% 25%, rgba(200, 146, 58, 0.18) 0%, transparent 60%);
 }
 .milestone .container { position: relative; z-index: 2; }
+.milestone-block + .milestone-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(250, 245, 236, 0.25), transparent);
+  margin: 80px auto;
+  max-width: 80%;
+}
 .milestone-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
