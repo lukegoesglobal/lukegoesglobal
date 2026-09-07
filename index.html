@@ -818,6 +818,24 @@ main, section { position: relative; z-index: 2; }
   letter-spacing: 0.06em;
 }
 
+.sponsored-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 5;
+  background: rgba(27, 22, 17, 0.85);
+  color: var(--cream);
+  font-family: 'Lora', serif;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 50px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(250, 245, 236, 0.15);
+}
+
 .video-meta { padding: 22px; }
 .video-platform {
   display: inline-block;
@@ -1320,6 +1338,8 @@ footer {
       <a href="#pillar-hospitality" class="hero-tag">Hospitality</a>
       <span class="hero-tag-divider"></span>
       <a href="#pillar-pickleball" class="hero-tag">Pickleball</a>
+      <span class="hero-tag-divider"></span>
+      <a href="#pillar-lgbtq" class="hero-tag">LGBTQ+</a>
     </div>
     <div class="hero-contact">
       <a href="mailto:lukegoesglobal1@gmail.com">lukegoesglobal1@gmail.com</a>
@@ -1383,23 +1403,23 @@ footer {
 
     <div class="platforms">
       <div class="platform">
-        <div class="platform-name">YouTube</div>
-        <a class="platform-handle" href="https://www.youtube.com/@Lukegoesglobal" target="_blank">@lukegoesglobal</a>
-        <div class="platform-stats">971 SUBSCRIBERS</div>
+        <div class="platform-name">Instagram</div>
+        <a class="platform-handle" href="https://www.instagram.com/lukegoesglobal/" target="_blank">@lukegoesglobal</a>
+        <div class="platform-stats">7,264 FOLLOWERS</div>
       </div>
       <div class="platform">
         <div class="platform-name">TikTok</div>
         <a class="platform-handle" href="https://www.tiktok.com/@lukegoesglobal_" target="_blank">@lukegoesglobal_</a>
-        <div class="platform-stats">5,118 FOLLOWERS</div>
+        <div class="platform-stats">6,020 FOLLOWERS</div>
       </div>
       <div class="platform">
-        <div class="platform-name">Instagram</div>
-        <a class="platform-handle" href="https://www.instagram.com/lukegoesglobal/" target="_blank">@lukegoesglobal</a>
-        <div class="platform-stats">6,774 FOLLOWERS</div>
+        <div class="platform-name">YouTube</div>
+        <a class="platform-handle" href="https://www.youtube.com/@Lukegoesglobal" target="_blank">@lukegoesglobal</a>
+        <div class="platform-stats">1,054 SUBSCRIBERS</div>
       </div>
     </div>
 
-    <p class="stats-footnote">Over 12,000 total followers. 1.6M average monthly views. The math speaks for itself.</p>
+    <p class="stats-footnote">Over 14,000 total followers. 1.6M average monthly views. The math speaks for itself.</p>
   </div>
 </section>
 
@@ -1541,6 +1561,34 @@ footer {
             <div class="video-stats"><span>15.4K views</span><span>1.2K likes</span><span>31 new follows</span></div>
           </div>
         </a>
+        <a href="https://www.instagram.com/p/DZaPLjaEf-b/" target="_blank" class="video-card">
+          <div class="video-thumb">
+            <span class="viral-badge">★ Viral</span>
+            <img src="thumb-roadtrip.jpg" alt="Driving 2000 miles across the country carousel post">
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <span class="video-platform">Instagram Carousel</span>
+            <h4 class="video-title">Driving 2,000 miles across the country to restart my life</h4>
+            <div class="video-stats"><span>35.8K views</span><span>847 likes</span><span>154 new follows</span></div>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/p/DaNuBX7Rh7g/" target="_blank" class="video-card">
+          <div class="video-thumb">
+            <span class="sponsored-badge">Sponsored</span>
+            <img src="thumb-spotminders.jpg" alt="Losing Stuff with ADHD Spotminders sponsored video">
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <span class="video-platform">TikTok + Instagram + YouTube</span>
+            <h4 class="video-title">Losing Stuff with ADHD, with Spotminders</h4>
+            <div class="video-stats"><span>8.8K views</span><span>287 likes</span><span>3.82% engagement</span></div>
+          </div>
+        </a>
       </div>
     </div>
 
@@ -1635,6 +1683,62 @@ footer {
             <span class="video-platform">TikTok + Instagram</span>
             <h4 class="video-title">Pickleball is exploding across Tuscaloosa</h4>
             <div class="video-stats"><span>14.1K combined views</span><span>568 likes</span></div>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/lukegoesglobal/" target="_blank" class="video-card">
+          <div class="video-thumb">
+            <span class="sponsored-badge">Sponsored</span>
+            <img src="thumb-pickleball-alabama.jpg" alt="Using Pickleball to make friends in a new city, Alabama Club Pickleball paid partnership">
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <span class="video-platform">Instagram</span>
+            <h4 class="video-title">Using pickleball to make friends in a new city</h4>
+            <div class="video-stats"><span>4.8K views</span><span>136 likes</span><span>Alabama Club Pickleball</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- PILLAR 4: LGBTQ+ CONTENT -->
+    <div class="pillar" id="pillar-lgbtq">
+      <div class="pillar-header">
+        <div>
+          <span class="pillar-num">04</span>
+          <div class="pillar-title-block">
+            <h3>LGBTQ+ Content</h3>
+            <div class="sub">out and on the road</div>
+          </div>
+        </div>
+      </div>
+      <div class="pillar-grid pillar-grid-2">
+        <a href="https://www.instagram.com/p/Db3N6ZLxCUn/" target="_blank" class="video-card">
+          <div class="video-thumb">
+            <img src="thumb-cityfest.jpg" alt="San Diego Local Pride Cityfest in Hillcrest">
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <span class="video-platform">TikTok + Instagram + YouTube</span>
+            <h4 class="video-title">70,000 person free festival at San Diego Pride Cityfest</h4>
+            <div class="video-stats"><span>20.5K combined views</span><span>1.3K likes</span><span>6.94% engagement</span></div>
+          </div>
+        </a>
+        <a href="https://www.tiktok.com/@lukegoesglobal_/video/7665357414417354015" target="_blank" class="video-card">
+          <div class="video-thumb">
+            <span class="sponsored-badge">Sponsored</span>
+            <img src="thumb-escaperoom.jpg" alt="Best first date idea in Hillcrest San Diego escape and rage room paid partnership">
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <span class="video-platform">TikTok + Instagram</span>
+            <h4 class="video-title">Best first date idea in Hillcrest, San Diego</h4>
+            <div class="video-stats"><span>24.8K combined views</span><span>1.7K likes</span><span>7.63% engagement</span></div>
           </div>
         </a>
       </div>
